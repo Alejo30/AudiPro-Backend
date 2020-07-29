@@ -25,6 +25,8 @@ import com.restAudiPro.rest.models.Audio;
 import com.restAudiPro.rest.repository.audioRepository;
 import com.restAudiPro.rest.service.SecuenciaBDService;
 
+import io.swagger.models.Response;
+
 @RestController
 @RequestMapping("/api")
 public class AudioController {
@@ -40,12 +42,14 @@ public class AudioController {
 		return audioRepository.findAll();
 	}
 	
-	
-  @GetMapping("/getAudio/{id}") 
-  public Optional<Audio> getAudioById(@PathVariable int id){
-	  return audioRepository.findById(id);
-  }
-	 
+	@GetMapping("/getAudio/{id}") 
+	public String getAudioById(@PathVariable int id){
+	  if (audioRepository.existsById(id)) {
+		  return audioRepository.findById(id).toString();
+	  }else {
+		  return "Registro inexistente";
+	  }
+	}
 	 
 	@PostMapping("/addAudio")
 	public Audio createAudio(@Validated @RequestBody Audio audio) {
@@ -54,13 +58,23 @@ public class AudioController {
 	}
 	
 	@PutMapping("/updateAudio/{id}")
-	public Audio updateAudio(@PathVariable int id, @Validated @RequestBody Audio audio) {
-		return audioRepository.save(audio);
+	public String updateAudio(@PathVariable int id, @Validated @RequestBody Audio audio) {
+		if (audioRepository.existsById(id)) {
+			audio.setId(id);
+			return "Actualizado: "+audioRepository.save(audio).toString();	
+		}else {
+			return "No existe ese registro";
+		}
 	}
 	
 	@DeleteMapping("/deleteAudio/{id}")
 	public String deleteAudio(@PathVariable int id) {
-		audioRepository.deleteById(id);
-		return "Deleted:" + id;
+		if (audioRepository.existsById(id)) {
+			audioRepository.deleteById(id);
+			return "Eliminado: " + id;
+		}else {
+			return "No existe ese registro";
+		}
+		
 	}
 }

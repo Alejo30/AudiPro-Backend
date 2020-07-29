@@ -22,7 +22,7 @@ public class Audio implements Serializable{
     private int id;
     private String nombre;
     private String autor;
-    private int año;
+    private int anio;
     private String genero;
     private String album;
     
@@ -30,10 +30,10 @@ public class Audio implements Serializable{
     
     
     
-	public Audio(String nombre, String autor, int año, String genero, String album) {
+	public Audio(String nombre, String autor, int anio, String genero, String album) {
 		this.nombre = nombre;
 		this.autor = autor;
-		this.año = año;
+		this.anio = anio;
 		this.genero = genero;
 		this.album = album;
 	}
@@ -58,11 +58,11 @@ public class Audio implements Serializable{
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
-	public int getAño() {
-		return año;
+	public int getAnio() {
+		return anio;
 	}
-	public void setAño(int año) {
-		this.año = año;
+	public void setAnio(int anio) {
+		this.anio = anio;
 	}
 	public String getGenero() {
 		return genero;
@@ -80,8 +80,8 @@ public class Audio implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Audio [id=" + id + ", nombre=" + nombre + ", autor=" + autor + ", año=" + año + ", genero=" + genero
-				+ ", album=" + album + "]";
+		return "id=" + id + ", nombre=" + nombre + ", autor=" + autor + ", año=" + anio + ", genero=" + genero
+				+ ", album=" + album;
 	}
 	
 	

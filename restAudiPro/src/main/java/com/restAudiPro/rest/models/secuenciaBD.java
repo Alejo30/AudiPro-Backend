@@ -9,7 +9,7 @@ public class secuenciaBD {
 	@Id
     private String id;
 
-    private long seq;
+    private int seq;
 
     public secuenciaBD() {}
 
@@ -21,11 +21,11 @@ public class secuenciaBD {
         this.id = id;
     }
 
-    public long getSeq() {
+    public int getSeq() {
         return seq;
     }
 
-    public void setSeq(long seq) {
+    public void setSeq(int seq) {
         this.seq = seq;
     }
 }
