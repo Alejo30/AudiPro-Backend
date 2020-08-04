@@ -22,6 +22,7 @@ public class SecuenciaBDService {
         this.mongoOperations = mongoOperations;
     }
 	
+	
 	public int generateSequence(String seqName) {
 
         secuenciaBD counter = mongoOperations.findAndModify(query(where("_id").is(seqName)),

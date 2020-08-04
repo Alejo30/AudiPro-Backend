@@ -83,8 +83,5 @@ public class Audio implements Serializable{
 		return "id=" + id + ", nombre=" + nombre + ", autor=" + autor + ", año=" + anio + ", genero=" + genero
 				+ ", album=" + album;
 	}
-	
-	
-    
     
 }
