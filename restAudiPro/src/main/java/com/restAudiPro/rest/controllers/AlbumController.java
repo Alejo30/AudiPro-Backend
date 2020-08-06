@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.restAudiPro.rest.models.Album;
-import com.restAudiPro.rest.models.Artista;
+import com.restAudiPro.rest.models.Audio;
 import com.restAudiPro.rest.repository.albumRepository;
-import com.restAudiPro.rest.repository.artistaRepository;
+import com.restAudiPro.rest.service.SecuenciaBDService;
 
 
 @CrossOrigin(origins = "*")
@@ -25,9 +25,12 @@ public class AlbumController {
 	@Autowired
 	private albumRepository albumRepository;
 	
+	@Autowired
+	private SecuenciaBDService secuenciaService;
 	
 	@PostMapping("/addAlbum")
 	public Album createAlbum(@Validated @RequestBody Album album) {
+		album.setId(secuenciaService.generateSequence(Audio.SEQUENCE_NAME));
 		return albumRepository.insert(album);
 	}
 	

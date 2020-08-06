@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.restAudiPro.rest.models.Artista;
+import com.restAudiPro.rest.models.Audio;
 import com.restAudiPro.rest.repository.artistaRepository;
+import com.restAudiPro.rest.service.SecuenciaBDService;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -21,9 +23,14 @@ public class ArtistaController {
 
 	@Autowired
 	private artistaRepository artistaRepository;
+
+	@Autowired
+	private SecuenciaBDService secuenciaService;
 	
 	@PostMapping("/addArtista")
 	public Artista createArtista(@Validated @RequestBody Artista artista) {
+		artista.setId(secuenciaService.generateSequence(Audio.SEQUENCE_NAME));
+
 		return artistaRepository.insert(artista);
 	}
 	
