@@ -27,6 +27,7 @@ public class ArtistaController {
 	@Autowired
 	private SecuenciaBDService secuenciaService;
 	
+	@CrossOrigin(origins = "*")
 	@PostMapping("/addArtista")
 	public Artista createArtista(@Validated @RequestBody Artista artista) {
 		artista.setId(secuenciaService.generateSequence(Audio.SEQUENCE_NAME));
@@ -34,6 +35,7 @@ public class ArtistaController {
 		return artistaRepository.insert(artista);
 	}
 	
+	@CrossOrigin(origins = "*")
 	@GetMapping("/getArtista")
 	public List <Artista> getAllArtistas(){
 		return artistaRepository.findAll();

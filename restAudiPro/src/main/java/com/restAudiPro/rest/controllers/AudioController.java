@@ -35,11 +35,13 @@ public class AudioController {
 	@Autowired
 	private SecuenciaBDService secuenciaService;
 	
+	@CrossOrigin(origins = "*")
 	@GetMapping("/getAudios")
 	public List <Audio> getAllAudios(){
 		return audioRepository.findAll();
 	}
 	
+	@CrossOrigin(origins = "*")
 	@GetMapping("/getAudio/{id}") 
 	public String getAudioById(@PathVariable int id){
 	  if (audioRepository.existsById(id)) {
@@ -48,13 +50,15 @@ public class AudioController {
 		  return "Registro inexistente";
 	  }
 	}
-	 
+	
+	@CrossOrigin(origins = "*")
 	@PostMapping("/addAudio")
 	public Audio createAudio(@Validated @RequestBody Audio audio) {
 		audio.setId(secuenciaService.generateSequence(Audio.SEQUENCE_NAME));
 		return audioRepository.insert(audio);
 	}
 	
+	@CrossOrigin(origins = "*")
 	@PutMapping("/updateAudio/{id}")
 	public String updateAudio(@PathVariable int id, @Validated @RequestBody Audio audio) {
 		if (audioRepository.existsById(id)) {
@@ -65,6 +69,7 @@ public class AudioController {
 		}
 	}
 	
+	@CrossOrigin(origins = "*")
 	@DeleteMapping("/deleteAudio/{id}")
 	public String deleteAudio(@PathVariable int id) {
 		if (audioRepository.existsById(id)) {

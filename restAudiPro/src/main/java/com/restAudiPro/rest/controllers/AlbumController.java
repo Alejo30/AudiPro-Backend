@@ -28,12 +28,14 @@ public class AlbumController {
 	@Autowired
 	private SecuenciaBDService secuenciaService;
 	
+	@CrossOrigin(origins = "*")
 	@PostMapping("/addAlbum")
 	public Album createAlbum(@Validated @RequestBody Album album) {
 		album.setId(secuenciaService.generateSequence(Audio.SEQUENCE_NAME));
 		return albumRepository.insert(album);
 	}
 	
+	@CrossOrigin(origins = "*")
 	@GetMapping("/getAlbum")
 	public List <Album> getAllAlbum(){
 		return albumRepository.findAll();
